@@ -1,7 +1,7 @@
 #include <iostream>
 
 int main() {
-    int x;  // ❌ uninitialized variable (BAD)
+    int x=0;  // ❌ uninitialized variable (BAD)
     std::cout << x << std::endl;  // ❌ using garbage value
     return 0;
 }
