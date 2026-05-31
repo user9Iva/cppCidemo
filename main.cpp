@@ -1,6 +1,7 @@
 #include <iostream>
 
 int main() {
-    std::cout << "Hello CI/CD with C++" << ;;;
+    int x;  // ❌ uninitialized variable (BAD)
+    std::cout << x << std::endl;  // ❌ using garbage value
     return 0;
 }

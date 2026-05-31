@@ -1,4 +1,4 @@
-name: Simple C++ CI
+name: C++ CI with Static Analysis
 
 on:
   push:
@@ -12,11 +12,20 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Install compiler
-        run: sudo apt-get update && sudo apt-get install -y g++
+      # 1. Install tools
+      - name: Install compiler and cppcheck
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y g++ cppcheck
 
+      # 2. Static Code Analysis (IMPORTANT STEP)
+      - name: Run Static Analysis (cppcheck)
+        run: cppcheck --enable=all --error-exitcode=1 .
+
+      # 3. Compile code
       - name: Compile C++ code
         run: g++ main.cpp -o app
 
+      # 4. Run program
       - name: Run program
         run: ./app
